@@ -1,6 +1,6 @@
 from django.shortcuts import render
 from .models import Contact, Subscribe
-#from django.core.mail import send_mail
+from django.core.mail import send_mail
 
 
 def index(request):
@@ -23,12 +23,12 @@ def about(request):
 
         user = Contact.objects.create(name=name, email=email, subject=subject, message=message)
 
-#     send_mail(
- #           subject,
-  #          message,
-   #         email,
-    #        ['dorothyvic24@gmail.com'],
-     #   )
+        send_mail(
+            subject,
+            message,
+            email,
+            ['dorothyvic24@gmail.com'],
+        )
 
         return render(request, 'contact-done.html', {'name': name})
     else:
@@ -40,16 +40,16 @@ def contact(request):
         name = request.POST['name']
         email = request.POST['email']
         subject = request.POST['subject']
-        message  = request.POST['message']
+        message = request.POST['message']
 
         user = Contact.objects.create(name=name, email=email, subject=subject, message=message)
 
-#        send_mail(
-#            subject,
-#            message,
-#            email,
-#            ['dorothyvic24@gmail.com'],
- #       )
+        send_mail(
+            subject,
+            message,
+            email,
+            ['dorothyvic24@gmail.com'],
+        )
 
         return render(request, 'contact-done.html', {'name': name})
     else:
